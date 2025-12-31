@@ -1,0 +1,2263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chauffeur Privé Aix-Marseille - Service Premium 24h/24</title>
+    <meta name="description" content="Chauffeur privé professionnel entre Aix-en-Provence et Marseille. Service 24h/24, tarifs transparents, réservation facile et véhicules confortables.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #d4af37;
+            --accent: #e53e3e;
+            --light: #f7fafc;
+            --dark: #2d3748;
+            --gray: #718096;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--secondary);
+            font-size: 1.8rem;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.9)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #e6c44c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .tarifs-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tarif-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tarif-item:last-child {
+            border-bottom: none;
+        }
+
+        .tarif-name {
+            font-weight: 600;
+        }
+
+        .tarif-price {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .tarif-note {
+            margin-top: 1.5rem;
+            font-style: italic;
+            color: var(--gray);
+            text-align: center;
+        }
+
+        .calculator {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 5px;
+            border: 1px solid #cbd5e0;
+            font-size: 1rem;
+            color: var(--dark);
+            background-color: white;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+
+        .form-control option {
+            color: var(--dark);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group input {
+            width: auto;
+        }
+
+        .result {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            text-align: center;
+            display: none;
+        }
+
+        .result.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 1rem 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @media (min-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr 1.5fr;
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            background-color: var(--secondary);
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-text h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            width: 100%;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .payment-info {
+            background-color: #f0f9ff;
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .estimated-price {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            margin: 1.5rem 0;
+            display: none;
+            position: sticky;
+            bottom: 20px;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .estimated-price.active {
+            display: block;
+            animation: slideUp 0.5s ease;
+        }
+
+        .estimated-price .price {
+            font-size: 1.8rem;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e0;
+            font-size: 0.9rem;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            color: white;
+            font-weight: 500;
+            z-index: 1001;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.success {
+            background-color: #38a169;
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background-color: #e53e3e;
+            transform: translateX(0);
+        }
+
+        /* Styles pour l'autocomplétion d'adresse */
+        .autocomplete-container {
+            position: relative;
+        }
+
+        .autocomplete-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0 0 5px 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .autocomplete-results.active {
+            display: block;
+        }
+
+        .autocomplete-item {
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+            border-bottom: 1px solid #f1f5f9;
+            color: var(--dark);
+        }
+
+        .autocomplete-item:hover {
+            background-color: #f7fafc;
+        }
+
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+
+        .autocomplete-loading {
+            padding: 0.8rem 1rem;
+            color: var(--gray);
+            text-align: center;
+        }
+
+        .distance-info {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+        }
+
+        .form-section-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+        }
+
+        /* Styles pour le panneau chauffeur */
+        .driver-panel {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-top: 3rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .driver-panel h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .reservation-item {
+            background-color: #f7fafc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .reservation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .reservation-id {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .reservation-time {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .reservation-details {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .reservation-details {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .reservation-client {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .reservation-route {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .reservation-price {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 1.2rem;
+            text-align: right;
+        }
+
+        .reservation-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .no-reservations {
+            text-align: center;
+            color: var(--gray);
+            padding: 2rem;
+            font-style: italic;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 1rem;
+        }
+
+        .status-pending {
+            background-color: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-accepted {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-rejected {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        /* Nouvelle section réservation */
+        .reservation-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 5rem 0;
+        }
+
+        .reservation-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @media (min-width: 992px) {
+            .reservation-container {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        .reservation-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .reservation-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .step-number {
+            background-color: var(--secondary);
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* Styles pour le bon de commande */
+        .order-form-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .order-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1rem;
+        }
+
+        .order-header h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .order-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .order-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .order-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .order-section h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .order-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .order-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .order-label {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .order-value {
+            background-color: #f7fafc;
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .order-input {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: 1px solid #cbd5e0;
+            font-size: 1rem;
+        }
+
+        .order-input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Flèche de retour en haut */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: #e6c44c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 1rem 0;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reservation-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .estimated-price {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: 0;
+                border-radius: 0;
+                z-index: 1000;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-car"></i>
+                <h1>Chauffeur Aix-Marseille</h1>
+            </div>
+            <nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="nav-links">
+                    <a href="#accueil">Accueil</a>
+                    <a href="#services">Services</a>
+                    <a href="#tarifs">Tarifs</a>
+                    <a href="#calculateur">Calculateur</a>
+                    <a href="#reservation">Réservation</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#chauffeur" id="driver-link" style="display: none;">Espace Chauffeur</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="container">
+            <h2>Chauffeur Privé Aix-en-Provence & Marseille</h2>
+            <p>Service de transport professionnel, fiable et confortable 24h/24 et 7j/7. Réservez votre course en quelques clics !</p>
+            <a href="#reservation" class="btn">Réserver maintenant</a>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Services</h2>
+                <p>Découvrez notre gamme complète de services de transport pour répondre à tous vos besoins</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3>Transfert Aéroport</h3>
+                    <p>Transferts vers et depuis les aéroports de Marseille-Provence et Marignane, avec suivi des vols en temps réel.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Transport d'Affaires</h3>
+                    <p>Service professionnel pour vos rendez-vous d'affaires, congrès et séminaires avec voitures haut de gamme.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h3>Événements Spéciaux</h3>
+                    <p>Mariages, anniversaires, soirées : nous vous accompagnons en toute élégance pour vos moments importants.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Courses Urbaines</h3>
+                    <p>Déplacements en ville entre Aix-en-Provence et Marseille, ponctuels ou réguliers, selon vos besoins.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h3>Service Nocturne</h3>
+                    <p>Disponible 24h/24 pour vos déplacements tardifs ou tôt le matin, en toute sécurité.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-suitcase-rolling"></i>
+                    </div>
+                    <h3>Tourisme & Découverte</h3>
+                    <p>Visitez la Provence en toute sérénité avec nos circuits touristiques personnalisés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tarifs -->
+    <section id="tarifs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Tarifs</h2>
+                <p>Des tarifs transparents et compétitifs pour un service de qualité</p>
+            </div>
+            <div class="tarifs-container">
+                <div class="tarif-item">
+                    <div class="tarif-name">Tarif de base (par km)</div>
+                    <div class="tarif-price">2,40 €</div>
+                </div>
+                <div class="tarif-item">
+                    <div class="tarif-name">Majoration heure de pointe (7h-9h, 17h-19h)</div>
+                    <div class="tarif-price">+20%</div>
+                </div>
+                <div class="tarif-item">
+                    <div class="tarif-name">Majoration nuit (22h-6h)</div>
+                    <div class="tarif-price">+30%</div>
+                </div>
+                <div class="tarif-item">
+                    <div class="tarif-name">Prise en charge aéroport</div>
+                    <div class="tarif-price">10 €</div>
+                </div>
+                <div class="tarif-item">
+                    <div class="tarif-name">Siège enfant</div>
+                    <div class="tarif-price">10 €</div>
+                </div>
+                <div class="tarif-item">
+                    <div class="tarif-name">Attente (par 15 min)</div>
+                    <div class="tarif-price">5 €</div>
+                </div>
+                <div class="tarif-note">
+                    <p>Les tarifs sont calculés selon la distance réelle parcourue. Minimum de perception : <strong>25 €</strong>.</p>
+                    <p class="payment-info"><i class="fas fa-credit-card"></i> Paiement auprès du chauffeur : espèces et cartes bancaires acceptées</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculateur -->
+    <section id="calculateur">
+        <div class="container">
+            <div class="section-title">
+                <h2>Estimez le Prix de Votre Course</h2>
+                <p>Calculez instantanément le coût de votre trajet avec notre simulateur</p>
+            </div>
+            <div class="calculator">
+                <div class="form-group autocomplete-container">
+                    <label for="pickup-calc">Lieu de prise en charge</label>
+                    <input type="text" id="pickup-calc" class="form-control" placeholder="Adresse de départ" required>
+                    <div class="autocomplete-results" id="pickup-results"></div>
+                </div>
+                <div class="form-group autocomplete-container">
+                    <label for="destination-calc">Destination</label>
+                    <input type="text" id="destination-calc" class="form-control" placeholder="Adresse d'arrivée" required>
+                    <div class="autocomplete-results" id="destination-results"></div>
+                </div>
+                <div class="distance-info" id="distance-info"></div>
+                <div class="form-group">
+                    <label for="time-calc">Heure de départ</label>
+                    <input type="time" id="time-calc" class="form-control" required>
+                </div>
+                <div class="options-grid">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="airport-calc" class="form-control">
+                        <label for="airport-calc">Prise en charge aéroport (+10€)</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="childseat-calc" class="form-control">
+                        <label for="childseat-calc">Siège enfant (+10€)</label>
+                    </div>
+                </div>
+                <button type="button" id="calculate-btn" class="btn">Calculer le prix</button>
+                <div class="result" id="result">
+                    <h3>Estimation de votre course</h3>
+                    <div class="price" id="calculated-price">0,00 €</div>
+                    <p>Ce prix est une estimation et peut varier selon le trafic et l'itinéraire exact.</p>
+                    <p class="payment-info"><i class="fas fa-credit-card"></i> Paiement auprès du chauffeur : espèces et cartes bancaires acceptées</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Réservation -->
+    <section class="reservation-section" id="reservation">
+        <div class="container">
+            <div class="section-title">
+                <h2>Réserver Votre Course</h2>
+                <p>Remplissez le formulaire ci-dessous pour réserver votre chauffeur privé</p>
+            </div>
+            <div class="reservation-container">
+                <div class="reservation-info">
+                    <h3>Comment réserver ?</h3>
+                    <div class="reservation-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Remplissez le formulaire</h3>
+                                <p>Indiquez vos informations, le lieu de prise en charge et la destination</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Vérifiez le prix estimé</h3>
+                                <p>Le prix s'affiche automatiquement lorsque vous remplissez les adresses</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Confirmez la réservation</h3>
+                                <p>Un chauffeur vous contactera dans les 5 minutes pour finaliser</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-info">
+                        <p><i class="fas fa-info-circle"></i> Le paiement s'effectue directement auprès du chauffeur. Espèces et cartes bancaires acceptées.</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="reservation-form">
+                        <div class="form-section">
+                            <h3 class="form-section-title">Informations personnelles</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="reservation-name">Nom complet</label>
+                                    <input type="text" id="reservation-name" name="name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reservation-phone">Téléphone</label>
+                                    <input type="tel" id="reservation-phone" name="phone" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservation-email">Email</label>
+                                <input type="email" id="reservation-email" name="email" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3 class="form-section-title">Détails de la course</h3>
+                            <div class="form-group autocomplete-container">
+                                <label for="reservation-pickup">Lieu de prise en charge</label>
+                                <input type="text" id="reservation-pickup" name="pickup" class="form-control" placeholder="Adresse complète" required>
+                                <div class="autocomplete-results" id="reservation-pickup-results"></div>
+                            </div>
+                            <div class="form-group autocomplete-container">
+                                <label for="reservation-destination">Destination</label>
+                                <input type="text" id="reservation-destination" name="destination" class="form-control" placeholder="Adresse complète" required>
+                                <div class="autocomplete-results" id="reservation-destination-results"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservation-datetime">Date et heure souhaitée</label>
+                                <input type="datetime-local" id="reservation-datetime" name="datetime" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservation-passengers">Nombre de passagers</label>
+                                <input type="number" id="reservation-passengers" name="passengers" class="form-control" min="1" max="8" value="1" required>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3 class="form-section-title">Options supplémentaires</h3>
+                            <div class="options-grid">
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="reservation-airport" name="airport" class="form-control">
+                                    <label for="reservation-airport">Prise en charge aéroport (+10€)</label>
+                                </div>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="reservation-childseat" name="childseat" class="form-control">
+                                    <label for="reservation-childseat">Siège enfant (+10€)</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservation-message">Informations complémentaires</label>
+                                <textarea id="reservation-message" name="message" class="form-control" placeholder="Type de véhicule souhaité, bagages spéciaux, etc."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="estimated-price" id="reservation-estimated-price">
+                            <h3>Prix estimé de votre course</h3>
+                            <div class="price" id="reservation-form-price">0,00 €</div>
+                            <p>Ce prix peut varier selon le trafic</p>
+                        </div>
+
+                        <button type="submit" class="btn">Confirmer la réservation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contactez-Nous</h2>
+                <p>Pour toute question ou information supplémentaire</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Téléphone</h3>
+                            <p>+33 6 12 34 56 78</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <p>contact@chauffeur-aix-marseille.fr</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Zone d'intervention</h3>
+                            <p>Aix-en-Provence, Marseille et toute la région PACA</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Horaires</h3>
+                            <p>24h/24 et 7j/7</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Moyens de paiement</h3>
+                            <p>Espèces et cartes bancaires acceptées auprès du chauffeur</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Envoyez-nous un message</h3>
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-name">Nom complet</label>
+                                <input type="text" id="contact-name" name="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-phone">Téléphone</label>
+                                <input type="tel" id="contact-phone" name="phone" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email</label>
+                            <input type="email" id="contact-email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-subject">Sujet</label>
+                            <input type="text" id="contact-subject" name="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message">Message</label>
+                            <textarea id="contact-message" name="message" class="form-control" placeholder="Votre message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Espace Chauffeur (caché par défaut) -->
+    <section id="chauffeur" style="display: none;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Espace Chauffeur</h2>
+                <p>Gérez vos réservations en temps réel</p>
+            </div>
+            <div class="driver-panel">
+                <h3>Réservations en attente</h3>
+                <div id="reservations-list">
+                    <!-- Les réservations seront affichées ici -->
+                </div>
+            </div>
+            
+            <!-- Nouvelle section pour le bon de commande -->
+            <div class="order-form-container" id="order-form" style="display: none;">
+                <div class="order-header">
+                    <h3>Bon de Commande</h3>
+                    <p>Document officiel de la course</p>
+                </div>
+                
+                <form id="order-form-details">
+                    <div class="order-details">
+                        <div>
+                            <div class="order-section">
+                                <h4>Informations Client</h4>
+                                <div class="order-row">
+                                    <div class="order-label">Nom du client:</div>
+                                    <div class="order-value" id="order-client-name"></div>
+                                </div>
+                                <div class="order-row">
+                                    <div class="order-label">Téléphone:</div>
+                                    <div class="order-value" id="order-client-phone"></div>
+                                </div>
+                                <div class="order-row">
+                                    <div class="order-label">Email:</div>
+                                    <div class="order-value" id="order-client-email"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="order-section">
+                                <h4>Détails de la Course</h4>
+                                <div class="order-row">
+                                    <div class="order-label">Lieu de prise en charge:</div>
+                                    <div class="order-value" id="order-pickup"></div>
+                                </div>
+                                <div class="order-row">
+                                    <div class="order-label">Destination:</div>
+                                    <div class="order-value" id="order-destination"></div>
+                                </div>
+                                <div class="order-row">
+                                    <div class="order-label">Date et heure:</div>
+                                    <div class="order-value" id="order-datetime"></div>
+                                </div>
+                                <div class="order-row">
+                                    <div class="order-label">Nombre de passagers:</div>
+                                    <div class="order-value" id="order-passengers"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="order-section">
+                                <h4>Informations Chauffeur</h4>
+                                <div class="order-row">
+                                    <div class="order-label">Nom du chauffeur:</div>
+                                    <input type="text" class="order-input" id="order-driver-name" placeholder="Entrez votre nom">
+                                </div>
+                                <div class="order-row">
+                                    <div class="order-label">Véhicule utilisé:</div>
+                                    <input type="text" class="order-input" id="order-vehicle" placeholder="Marque, modèle, plaque">
+                                </div>
+                                <div class="order-row">
+                                    <div class="order-label">Heure de début:</div>
+                                    <input type="time" class="order-input" id="order-start-time">
+                                </div>
+                                <div class="order-row">
+                                    <div class="order-label">Heure de fin:</div>
+                                    <input type="time" class="order-input" id="order-end-time">
+                                </div>
+                            </div>
+                            
+                            <div class="order-section">
+                                <h4>Détails de la Course</h4>
+                                <div class="order-row">
+                                    <div class="order-label">Kilométrage total:</div>
+                                    <input type="number" class="order-input" id="order-kilometers" placeholder="Km parcourus" min="0" step="0.1">
+                                </div>
+                                <div class="order-row">
+                                    <div class="order-label">Durée totale:</div>
+                                    <input type="text" class="order-input" id="order-duration" placeholder="Ex: 45 min">
+                                </div>
+                                <div class="order-row">
+                                    <div class="order-label">Péages:</div>
+                                    <input type="number" class="order-input" id="order-tolls" placeholder="€" min="0" step="0.01">
+                                </div>
+                                <div class="order-row">
+                                    <div class="order-label">Stationnement:</div>
+                                    <input type="number" class="order-input" id="order-parking" placeholder="€" min="0" step="0.01">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-section">
+                        <h4>Calcul du Prix</h4>
+                        <div class="order-row">
+                            <div class="order-label">Prix estimé:</div>
+                            <div class="order-value" id="order-estimated-price"></div>
+                        </div>
+                        <div class="order-row">
+                            <div class="order-label">Suppléments:</div>
+                            <input type="number" class="order-input" id="order-supplements" placeholder="€" min="0" step="0.01" value="0">
+                        </div>
+                        <div class="order-row">
+                            <div class="order-label">Remise éventuelle:</div>
+                            <input type="number" class="order-input" id="order-discount" placeholder="€" min="0" step="0.01" value="0">
+                        </div>
+                        <div class="order-row">
+                            <div class="order-label">Prix final:</div>
+                            <input type="number" class="order-input" id="order-final-price" placeholder="€" min="0" step="0.01">
+                        </div>
+                    </div>
+                    
+                    <div class="order-section">
+                        <h4>Paiement</h4>
+                        <div class="order-row">
+                            <div class="order-label">Méthode de paiement:</div>
+                            <select class="order-input" id="order-payment-method">
+                                <option value="">Sélectionnez</option>
+                                <option value="cash">Espèces</option>
+                                <option value="card">Carte bancaire</option>
+                                <option value="transfer">Virement</option>
+                            </select>
+                        </div>
+                        <div class="order-row">
+                            <div class="order-label">Montant perçu:</div>
+                            <input type="number" class="order-input" id="order-amount-received" placeholder="€" min="0" step="0.01">
+                        </div>
+                        <div class="order-row">
+                            <div class="order-label">Monnaie rendue:</div>
+                            <input type="number" class="order-input" id="order-change" placeholder="€" min="0" step="0.01" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="order-section">
+                        <h4>Observations</h4>
+                        <textarea class="order-input" id="order-notes" placeholder="Observations, incidents, commentaires..." style="width: 100%; height: 100px;"></textarea>
+                    </div>
+                    
+                    <div class="order-actions">
+                        <button type="button" class="btn btn-secondary" id="order-cancel-btn">Annuler</button>
+                        <button type="button" class="btn" id="order-save-btn">Enregistrer</button>
+                        <button type="button" class="btn" id="order-print-btn">Imprimer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Chauffeur Aix-Marseille</h3>
+                    <p>Service de chauffeur privé professionnel entre Aix-en-Provence et Marseille. Confort, ponctualité et sécurité garantis.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Liens Rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#tarifs">Tarifs</a></li>
+                        <li><a href="#calculateur">Calculateur</a></li>
+                        <li><a href="#reservation">Réservation</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Nos Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Transfert Aéroport</a></li>
+                        <li><a href="#">Transport d'Affaires</a></li>
+                        <li><a href="#">Événements Spéciaux</a></li>
+                        <li><a href="#">Courses Urbaines</a></li>
+                        <li><a href="#">Service Nocturne</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Informations</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                        <li><a href="#">Conditions générales</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Chauffeur Aix-Marseille. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Flèche de retour en haut -->
+    <div id="back-to-top" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // Initialisation d'EmailJS (GRATUIT - 200 emails/mois)
+        (function(){
+            emailjs.init("GcqyFQqEyv559Xj84"); // Remplace par ta clé publique EmailJS
+        })();
+
+        // Menu mobile
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Variables pour stocker les coordonnées géographiques
+        let pickupCoords = null;
+        let destinationCoords = null;
+        let currentDistance = 0;
+
+        // Fonction pour rechercher des adresses avec Nominatim (GRATUIT)
+        async function searchAddress(query, resultsContainer) {
+            if (query.length < 3) {
+                resultsContainer.innerHTML = '';
+                resultsContainer.classList.remove('active');
+                return;
+            }
+
+            // Afficher un indicateur de chargement
+            resultsContainer.innerHTML = '<div class="autocomplete-loading">Recherche en cours...</div>';
+            resultsContainer.classList.add('active');
+
+            try {
+                const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=fr&limit=5`);
+                const data = await response.json();
+
+                if (data.length === 0) {
+                    resultsContainer.innerHTML = '<div class="autocomplete-loading">Aucun résultat trouvé</div>';
+                    return;
+                }
+
+                resultsContainer.innerHTML = '';
+                data.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'autocomplete-item';
+                    div.textContent = item.display_name;
+                    div.addEventListener('click', () => {
+                        // Mettre à jour le champ d'adresse
+                        const input = resultsContainer.previousElementSibling;
+                        input.value = item.display_name;
+                        
+                        // Stocker les coordonnées
+                        if (input.id.includes('pickup')) {
+                            pickupCoords = { lat: parseFloat(item.lat), lon: parseFloat(item.lon) };
+                        } else {
+                            destinationCoords = { lat: parseFloat(item.lat), lon: parseFloat(item.lon) };
+                        }
+                        
+                        // Fermer les résultats
+                        resultsContainer.classList.remove('active');
+                        
+                        // Calculer la distance si les deux adresses sont définies
+                        if (pickupCoords && destinationCoords) {
+                            calculateDistance();
+                        }
+                    });
+                    resultsContainer.appendChild(div);
+                });
+            } catch (error) {
+                console.error('Erreur lors de la recherche d\'adresse:', error);
+                resultsContainer.innerHTML = '<div class="autocomplete-loading">Erreur de recherche</div>';
+            }
+        }
+
+        // Fonction pour calculer la distance entre deux points avec OSRM (GRATUIT)
+        async function calculateDistance() {
+            if (!pickupCoords || !destinationCoords) return;
+
+            try {
+                const response = await fetch(`https://router.project-osrm.org/route/v1/driving/${pickupCoords.lon},${pickupCoords.lat};${destinationCoords.lon},${destinationCoords.lat}?overview=false`);
+                const data = await response.json();
+                
+                if (data.code === 'Ok') {
+                    currentDistance = (data.routes[0].distance / 1000).toFixed(1);
+                    document.getElementById('distance-info').textContent = `Distance estimée: ${currentDistance} km`;
+                    
+                    // Mettre à jour le prix estimé dans le formulaire de réservation
+                    updateReservationEstimatedPrice();
+                } else {
+                    document.getElementById('distance-info').textContent = 'Impossible de calculer la distance';
+                }
+            } catch (error) {
+                console.error('Erreur lors du calcul de distance:', error);
+                document.getElementById('distance-info').textContent = 'Erreur de calcul de distance';
+            }
+        }
+
+        // Fonction pour calculer le prix
+        function calculatePrice(distance, time, airport, childseat) {
+            let baseRate = 2.40;
+            let price = distance * baseRate;
+            
+            // Application des majorations selon l'heure
+            const hour = parseInt(time.split(':')[0]);
+            
+            // Heures de pointe : 7h-9h et 17h-19h
+            if ((hour >= 7 && hour < 9) || (hour >= 17 && hour < 19)) {
+                price *= 1.20; // +20%
+            }
+            
+            // Nuit : 22h-6h
+            if (hour >= 22 || hour < 6) {
+                price *= 1.30; // +30%
+            }
+            
+            // Frais aéroport
+            if (airport) {
+                price += 10;
+            }
+            
+            // Frais siège enfant
+            if (childseat) {
+                price += 10;
+            }
+            
+            // Minimum de perception modifié à 25€
+            if (price < 25) {
+                price = 25;
+            }
+            
+            return price.toFixed(2);
+        }
+
+        // Fonction pour mettre à jour le prix estimé dans le formulaire de réservation
+        function updateReservationEstimatedPrice() {
+            if (!currentDistance || currentDistance <= 0) return;
+            
+            const time = document.getElementById('reservation-datetime').value.split('T')[1] || '12:00';
+            const airport = document.getElementById('reservation-airport').checked;
+            const childseat = document.getElementById('reservation-childseat').checked;
+            
+            const price = calculatePrice(currentDistance, time, airport, childseat);
+            
+            document.getElementById('reservation-form-price').textContent = price + ' €';
+            document.getElementById('reservation-estimated-price').classList.add('active');
+        }
+
+        // Initialiser l'autocomplétion pour tous les champs d'adresse
+        const addressInputs = [
+            { input: 'pickup-calc', results: 'pickup-results' },
+            { input: 'destination-calc', results: 'destination-results' },
+            { input: 'reservation-pickup', results: 'reservation-pickup-results' },
+            { input: 'reservation-destination', results: 'reservation-destination-results' }
+        ];
+
+        addressInputs.forEach(item => {
+            const input = document.getElementById(item.input);
+            const results = document.getElementById(item.results);
+            
+            if (input && results) {
+                input.addEventListener('input', () => {
+                    searchAddress(input.value, results);
+                });
+                
+                // Fermer les résultats quand on clique ailleurs
+                document.addEventListener('click', (e) => {
+                    if (!input.contains(e.target) && !results.contains(e.target)) {
+                        results.classList.remove('active');
+                    }
+                });
+            }
+        });
+
+        // Calculateur de prix
+        document.getElementById('calculate-btn').addEventListener('click', function() {
+            if (!currentDistance || currentDistance <= 0) {
+                showNotification('Veuillez sélectionner des adresses valides', 'error');
+                return;
+            }
+            
+            const time = document.getElementById('time-calc').value;
+            const airport = document.getElementById('airport-calc').checked;
+            const childseat = document.getElementById('childseat-calc').checked;
+            
+            if (!time) {
+                showNotification('Veuillez sélectionner une heure', 'error');
+                return;
+            }
+            
+            const price = calculatePrice(currentDistance, time, airport, childseat);
+            
+            document.getElementById('calculated-price').textContent = price + ' €';
+            document.getElementById('result').classList.add('active');
+        });
+
+        // Écouteurs d'événements pour mettre à jour le prix en temps réel dans le formulaire de réservation
+        document.getElementById('reservation-datetime').addEventListener('change', updateReservationEstimatedPrice);
+        document.getElementById('reservation-airport').addEventListener('change', updateReservationEstimatedPrice);
+        document.getElementById('reservation-childseat').addEventListener('change', updateReservationEstimatedPrice);
+
+        // Gestion du formulaire de réservation
+        document.getElementById('reservation-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            // Désactiver le bouton pendant l'envoi
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Envoi en cours...';
+            
+            try {
+                // Récupérer les données du formulaire
+                const formData = {
+                    id: 'RES-' + Date.now(),
+                    name: document.getElementById('reservation-name').value,
+                    phone: document.getElementById('reservation-phone').value,
+                    email: document.getElementById('reservation-email').value,
+                    pickup: document.getElementById('reservation-pickup').value,
+                    destination: document.getElementById('reservation-destination').value,
+                    datetime: document.getElementById('reservation-datetime').value,
+                    passengers: document.getElementById('reservation-passengers').value,
+                    airport: document.getElementById('reservation-airport').checked,
+                    childseat: document.getElementById('reservation-childseat').checked,
+                    message: document.getElementById('reservation-message').value,
+                    estimatedPrice: document.getElementById('reservation-form-price').textContent,
+                    timestamp: new Date().toLocaleString('fr-FR'),
+                    status: 'en attente'
+                };
+                
+                // Valider que tous les champs requis sont remplis
+                if (!formData.name || !formData.phone || !formData.email || !formData.pickup || !formData.destination || !formData.datetime) {
+                    throw new Error('Veuillez remplir tous les champs obligatoires');
+                }
+                
+                // Sauvegarder la réservation
+                saveReservation(formData);
+                
+                // Notifier le chauffeur (GRATUIT - EmailJS)
+                await notifyDriver(formData);
+                
+                // Envoyer la confirmation au client (GRATUIT - EmailJS)
+                await sendClientConfirmation(formData);
+                
+                // Afficher confirmation au client
+                showNotification('✅ Réservation confirmée ! Un chauffeur vous contactera dans les 5 minutes.', 'success');
+                
+                // Réinitialiser le formulaire
+                document.getElementById('reservation-form').reset();
+                
+                // Réinitialiser les coordonnées
+                pickupCoords = null;
+                destinationCoords = null;
+                currentDistance = 0;
+                document.getElementById('reservation-estimated-price').classList.remove('active');
+                document.getElementById('distance-info').textContent = '';
+                
+            } catch (error) {
+                showNotification('❌ ' + error.message, 'error');
+            } finally {
+                // Réactiver le bouton
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+
+        // Gestion du formulaire de contact
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            // Désactiver le bouton pendant l'envoi
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Envoi en cours...';
+            
+            try {
+                // Récupérer les données du formulaire
+                const formData = {
+                    name: document.getElementById('contact-name').value,
+                    phone: document.getElementById('contact-phone').value,
+                    email: document.getElementById('contact-email').value,
+                    subject: document.getElementById('contact-subject').value,
+                    message: document.getElementById('contact-message').value,
+                    timestamp: new Date().toLocaleString('fr-FR')
+                };
+                
+                // Valider que tous les champs requis sont remplis
+                if (!formData.name || !formData.phone || !formData.email || !formData.subject || !formData.message) {
+                    throw new Error('Veuillez remplir tous les champs obligatoires');
+                }
+                
+                // Simuler l'envoi du message
+                await simulateContactSubmission(formData);
+                
+                // Afficher confirmation
+                showNotification('✅ Message envoyé ! Nous vous répondrons dans les plus brefs délais.', 'success');
+                
+                // Réinitialiser le formulaire
+                document.getElementById('contact-form').reset();
+                
+            } catch (error) {
+                showNotification('❌ ' + error.message, 'error');
+            } finally {
+                // Réactiver le bouton
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+
+        // Fonction pour simuler l'envoi du formulaire de contact
+        function simulateContactSubmission(formData) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log('Message de contact:', formData);
+                    resolve({ success: true });
+                }, 1500);
+            });
+        }
+
+        // Fonction pour sauvegarder la réservation
+        function saveReservation(reservation) {
+            let reservations = JSON.parse(localStorage.getItem('chauffeurReservations') || '[]');
+            reservations.push(reservation);
+            localStorage.setItem('chauffeurReservations', JSON.stringify(reservations));
+            
+            // Mettre à jour l'affichage des réservations
+            displayReservations();
+        }
+
+        // Fonction pour afficher les réservations
+        function displayReservations() {
+            const reservationsList = document.getElementById('reservations-list');
+            const reservations = JSON.parse(localStorage.getItem('chauffeurReservations') || '[]');
+            
+            if (reservations.length === 0) {
+                reservationsList.innerHTML = '<div class="no-reservations">Aucune réservation en attente</div>';
+                return;
+            }
+            
+            reservationsList.innerHTML = '';
+            
+            reservations.forEach(reservation => {
+                const statusClass = `status-${reservation.status.replace(' ', '-')}`;
+                const statusText = reservation.status === 'en attente' ? 'En attente' : 
+                                 reservation.status === 'acceptée' ? 'Acceptée' : 'Refusée';
+                
+                const reservationElement = document.createElement('div');
+                reservationElement.className = 'reservation-item';
+                reservationElement.innerHTML = `
+                    <div class="reservation-header">
+                        <div class="reservation-id">${reservation.id} 
+                            <span class="status-badge ${statusClass}">${statusText}</span>
+                        </div>
+                        <div class="reservation-time">${reservation.datetime}</div>
+                    </div>
+                    <div class="reservation-details">
+                        <div>
+                            <div class="reservation-client">${reservation.name}</div>
+                            <div>${reservation.phone}</div>
+                            <div>${reservation.passengers} passager(s)</div>
+                            ${reservation.airport ? '<div><i class="fas fa-plane"></i> Aéroport</div>' : ''}
+                            ${reservation.childseat ? '<div><i class="fas fa-baby"></i> Siège enfant</div>' : ''}
+                        </div>
+                        <div class="reservation-route">
+                            <div><strong>Départ:</strong> ${reservation.pickup}</div>
+                            <div><strong>Arrivée:</strong> ${reservation.destination}</div>
+                            <div class="reservation-price">${reservation.estimatedPrice}</div>
+                        </div>
+                    </div>
+                    ${reservation.status === 'en attente' ? `
+                    <div class="reservation-actions">
+                        <button class="btn btn-small accept-reservation" data-id="${reservation.id}">Accepter</button>
+                        <button class="btn btn-small btn-secondary refuse-reservation" data-id="${reservation.id}">Refuser</button>
+                        <button class="btn btn-small generate-order" data-id="${reservation.id}">Bon de Commande</button>
+                    </div>
+                    ` : ''}
+                    ${reservation.message ? `<div style="margin-top: 1rem;"><strong>Message:</strong> ${reservation.message}</div>` : ''}
+                `;
+                reservationsList.appendChild(reservationElement);
+            });
+            
+            // Ajouter les écouteurs d'événements pour les boutons
+            document.querySelectorAll('.accept-reservation').forEach(button => {
+                button.addEventListener('click', function() {
+                    const reservationId = this.getAttribute('data-id');
+                    updateReservationStatus(reservationId, 'acceptée');
+                    showNotification('Réservation acceptée avec succès', 'success');
+                });
+            });
+            
+            document.querySelectorAll('.refuse-reservation').forEach(button => {
+                button.addEventListener('click', function() {
+                    const reservationId = this.getAttribute('data-id');
+                    updateReservationStatus(reservationId, 'refusée');
+                    showNotification('Réservation refusée', 'success');
+                });
+            });
+            
+            // Ajouter les écouteurs d'événements pour les boutons de bon de commande
+            document.querySelectorAll('.generate-order').forEach(button => {
+                button.addEventListener('click', function() {
+                    const reservationId = this.getAttribute('data-id');
+                    generateOrderForm(reservationId);
+                });
+            });
+        }
+
+        // Fonction pour générer le formulaire de bon de commande
+        function generateOrderForm(reservationId) {
+            const reservations = JSON.parse(localStorage.getItem('chauffeurReservations') || '[]');
+            const reservation = reservations.find(r => r.id === reservationId);
+            
+            if (!reservation) {
+                showNotification('Réservation non trouvée', 'error');
+                return;
+            }
+            
+            // Remplir les informations de la réservation
+            document.getElementById('order-client-name').textContent = reservation.name;
+            document.getElementById('order-client-phone').textContent = reservation.phone;
+            document.getElementById('order-client-email').textContent = reservation.email;
+            document.getElementById('order-pickup').textContent = reservation.pickup;
+            document.getElementById('order-destination').textContent = reservation.destination;
+            document.getElementById('order-datetime').textContent = reservation.datetime;
+            document.getElementById('order-passengers').textContent = reservation.passengers;
+            document.getElementById('order-estimated-price').textContent = reservation.estimatedPrice;
+            
+            // Réinitialiser les champs vides
+            document.getElementById('order-driver-name').value = '';
+            document.getElementById('order-vehicle').value = '';
+            document.getElementById('order-start-time').value = '';
+            document.getElementById('order-end-time').value = '';
+            document.getElementById('order-kilometers').value = '';
+            document.getElementById('order-duration').value = '';
+            document.getElementById('order-tolls').value = '';
+            document.getElementById('order-parking').value = '';
+            document.getElementById('order-supplements').value = '0';
+            document.getElementById('order-discount').value = '0';
+            document.getElementById('order-final-price').value = '';
+            document.getElementById('order-payment-method').value = '';
+            document.getElementById('order-amount-received').value = '';
+            document.getElementById('order-change').value = '';
+            document.getElementById('order-notes').value = '';
+            
+            // Afficher le formulaire de bon de commande
+            document.getElementById('order-form').style.display = 'block';
+            
+            // Faire défiler vers le formulaire
+            document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+            
+            // Calculer le prix final automatiquement
+            calculateFinalPrice();
+            
+            // Stocker l'ID de la réservation pour l'enregistrement
+            document.getElementById('order-form').setAttribute('data-reservation-id', reservationId);
+        }
+
+        // Fonction pour calculer le prix final
+        function calculateFinalPrice() {
+            const estimatedPrice = parseFloat(document.getElementById('order-estimated-price').textContent.replace(' €', '').replace(',', '.')) || 0;
+            const supplements = parseFloat(document.getElementById('order-supplements').value) || 0;
+            const discount = parseFloat(document.getElementById('order-discount').value) || 0;
+            
+            const finalPrice = estimatedPrice + supplements - discount;
+            document.getElementById('order-final-price').value = finalPrice.toFixed(2);
+            
+            // Calculer la monnaie rendue
+            const amountReceived = parseFloat(document.getElementById('order-amount-received').value) || 0;
+            const change = amountReceived - finalPrice;
+            document.getElementById('order-change').value = change >= 0 ? change.toFixed(2) : '0.00';
+        }
+
+        // Fonction pour mettre à jour le statut d'une réservation
+        function updateReservationStatus(reservationId, status) {
+            let reservations = JSON.parse(localStorage.getItem('chauffeurReservations') || '[]');
+            const reservationIndex = reservations.findIndex(r => r.id === reservationId);
+            
+            if (reservationIndex !== -1) {
+                reservations[reservationIndex].status = status;
+                localStorage.setItem('chauffeurReservations', JSON.stringify(reservations));
+                displayReservations();
+                
+                // Envoyer un email de notification au client
+                const reservation = reservations[reservationIndex];
+                
+            }
+        }
+
+        // Fonction pour notifier le chauffeur (GRATUIT - EmailJS)
+        async function notifyDriver(reservation) {
+            try {
+                const templateParams = {
+                    reservation_id: reservation.id,
+                    client_name: reservation.name,
+                    client_phone: reservation.phone,
+                    client_email: reservation.email,
+                    pickup: reservation.pickup,
+                    destination: reservation.destination,
+                    datetime: reservation.datetime,
+                    passengers: reservation.passengers,
+                    price: reservation.estimatedPrice,
+                    options: `${reservation.airport ? 'Aéroport, ' : ''}${reservation.childseat ? 'Siège enfant, ' : ''}`,
+                    message: reservation.message || 'Aucun message'
+                };
+
+                // Envoi d'email au chauffeur via EmailJS (GRATUIT)
+                await emailjs.send('service_prz7evg', 'template_yvfce4s', templateParams);
+                console.log('Email de notification envoyé au chauffeur');
+                
+                // Afficher le lien vers l'espace chauffeur
+                document.getElementById('driver-link').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Erreur envoi email chauffeur:', error);
+                // Fallback: notification dans la console
+                console.log('🚗 NOUVELLE RÉSERVATION - Notification chauffeur');
+                console.log('📞 Contact client:', reservation.name, reservation.phone);
+                console.log('📍 Trajet:', reservation.pickup, '→', reservation.destination);
+            }
+        }
+
+        // Fonction pour envoyer la confirmation au client (GRATUIT - EmailJS)
+        async function sendClientConfirmation(reservation) {
+            try {
+                const templateParams = {
+                    client_name: reservation.name,
+                    reservation_id: reservation.id,
+                    pickup: reservation.pickup,
+                    destination: reservation.destination,
+                    datetime: reservation.datetime,
+                    passengers: reservation.passengers,
+                    price: reservation.estimatedPrice,
+                    options: `${reservation.airport ? 'Aéroport, ' : ''}${reservation.childseat ? 'Siège enfant, ' : ''}`,
+                    message: 'Votre réservation a été confirmée. Un chauffeur vous contactera dans les 5 minutes.'
+                };
+
+                // Envoi d'email de confirmation au client via EmailJS (GRATUIT)
+                await emailjs.send('service_prz7evg', 'template_1ze5abv', templateParams);
+                console.log('Email de confirmation envoyé au client');
+                
+            } catch (error) {
+                console.error('Erreur envoi email client:', error);
+                // Fallback: notification dans la console
+                console.log('📧 Email de confirmation envoyé au client:', reservation.email);
+            }
+        }
+
+        // Fonction pour afficher les notifications
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = 'notification ' + type;
+            
+            setTimeout(() => {
+                notification.classList.remove('success', 'error');
+            }, 5000);
+        }
+
+        // Fermeture du menu mobile au clic sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // Afficher l'espace chauffeur quand on clique sur le lien
+        document.getElementById('driver-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('chauffeur').style.display = 'block';
+            document.getElementById('driver-link').scrollIntoView({ behavior: 'smooth' });
+            displayReservations();
+        });
+
+        // Pré-remplir la date/heure avec l'heure actuelle + 1 heure
+        const now = new Date();
+        now.setHours(now.getHours() + 1);
+        const datetimeInput = document.getElementById('reservation-datetime');
+        if (datetimeInput) {
+            datetimeInput.min = new Date().toISOString().slice(0, 16);
+            datetimeInput.value = now.toISOString().slice(0, 16);
+        }
+
+        // Pré-remplir l'heure dans le calculateur avec l'heure actuelle
+        const timeInput = document.getElementById('time-calc');
+        if (timeInput) {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            timeInput.value = `${hours}:${minutes}`;
+        }
+
+        // Initialiser l'affichage des réservations au chargement
+        displayReservations();
+
+        // === GESTION DU BON DE COMMANDE ===
+        
+        // Écouteurs pour le calcul automatique du prix final
+        document.getElementById('order-supplements').addEventListener('input', calculateFinalPrice);
+        document.getElementById('order-discount').addEventListener('input', calculateFinalPrice);
+        document.getElementById('order-amount-received').addEventListener('input', calculateFinalPrice);
+        
+        // Écouteur pour le bouton Annuler
+        document.getElementById('order-cancel-btn').addEventListener('click', function() {
+            document.getElementById('order-form').style.display = 'none';
+        });
+        
+        // Écouteur pour le bouton Enregistrer
+        document.getElementById('order-save-btn').addEventListener('click', function() {
+            const reservationId = document.getElementById('order-form').getAttribute('data-reservation-id');
+            saveOrderForm(reservationId);
+        });
+        
+        // Écouteur pour le bouton Imprimer
+        document.getElementById('order-print-btn').addEventListener('click', function() {
+            window.print();
+        });
+        
+        // Fonction pour sauvegarder le bon de commande
+        function saveOrderForm(reservationId) {
+            const orderData = {
+                driverName: document.getElementById('order-driver-name').value,
+                vehicle: document.getElementById('order-vehicle').value,
+                startTime: document.getElementById('order-start-time').value,
+                endTime: document.getElementById('order-end-time').value,
+                kilometers: document.getElementById('order-kilometers').value,
+                duration: document.getElementById('order-duration').value,
+                tolls: document.getElementById('order-tolls').value,
+                parking: document.getElementById('order-parking').value,
+                supplements: document.getElementById('order-supplements').value,
+                discount: document.getElementById('order-discount').value,
+                finalPrice: document.getElementById('order-final-price').value,
+                paymentMethod: document.getElementById('order-payment-method').value,
+                amountReceived: document.getElementById('order-amount-received').value,
+                change: document.getElementById('order-change').value,
+                notes: document.getElementById('order-notes').value,
+                timestamp: new Date().toLocaleString('fr-FR')
+            };
+            
+            // Valider les champs obligatoires
+            if (!orderData.driverName || !orderData.vehicle || !orderData.finalPrice) {
+                showNotification('Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+            
+            // Sauvegarder dans le localStorage
+            let orders = JSON.parse(localStorage.getItem('chauffeurOrders') || '{}');
+            orders[reservationId] = orderData;
+            localStorage.setItem('chauffeurOrders', JSON.stringify(orders));
+            
+            showNotification('Bon de commande enregistré avec succès', 'success');
+            
+            // Fermer le formulaire après un délai
+            setTimeout(() => {
+                document.getElementById('order-form').style.display = 'none';
+            }, 1500);
+        }
+
+        // === CODE DE LA FLÈCHE ===
+        const backToTopButton = document.getElementById('back-to-top');
+
+        // Afficher/masquer la flèche au défilement
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        // Retour en haut au clic
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
